@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "users.apps.UsersConfig",
 ]
 
 MIDDLEWARE = [
@@ -99,6 +101,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Override default user
+# https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#extending-the-existing-user-model
+
+AUTH_USER_MODEL = "users.User"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
@@ -107,9 +114,9 @@ LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
 
-USE_I18N = True
+USE_I18N = False
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 

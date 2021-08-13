@@ -1,4 +1,5 @@
-Django>=3.2,<4
 Django>=3.2,<4.0
 python-dotenv>=0.17,<1
 envconfig>=0.2,<1
+djangorestframework>=3.12,<4
+djangorestframework-simplejwt>=4.7,<5

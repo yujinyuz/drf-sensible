@@ -11,7 +11,7 @@ class User(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-    objects = managers.CustomUserManager()
+    objects = managers.UserManager()
 
     def __str__(self):
         return self.email

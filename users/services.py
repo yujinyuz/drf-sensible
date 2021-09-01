@@ -14,6 +14,7 @@ def user_create(
     return user
 
 
+# -------- Selectors --------
 def user_list(*, filters=None) -> models.QuerySet:
     filters = filters or {}
 

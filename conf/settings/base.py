@@ -133,13 +133,12 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+APPEND_SLASH = False
+
 # rest_framework
-#
 REST_FRAMEWORK = {
-    # "DEFAULT_PAGINATION_CLASS": "core.utils.rest.CorePagination",
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 10,
-    # "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S%z",
+    "EXCEPTION_HANDLER": "api.errors.custom_exception_handler",
+    "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S%z",
     "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",
         "rest_framework.renderers.BrowsableAPIRenderer",
@@ -151,10 +150,11 @@ REST_FRAMEWORK = {
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ),
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     # "EXCEPTION_HANDLER": "core.utils.handlers.core_exception_handler",
     # "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
+from .celery import *  # noqa
 from .cors import *  # noqa
 from .simplejwt import *  # noqa
-from .celery import *  # noqa

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.mixins import ApiErrorsMixin
+from api.mixins import ApiAuthMixin, ApiErrorsMixin
 from api.pagination import LimitOffsetPagination, get_paginated_response
 
 from . import services
@@ -29,7 +29,7 @@ class UserCreateApi(ApiErrorsMixin, APIView):
         return Response()
 
 
-class UserListApi(ApiErrorsMixin, APIView):
+class UserListApi(ApiErrorsMixin, ApiAuthMixin, APIView):
     class Pagination(LimitOffsetPagination):
         default_limit = 1
 
@@ -60,3 +60,10 @@ class UserListApi(ApiErrorsMixin, APIView):
             request=request,
             view=self,
         )
+
+
+class UserMeApi(ApiAuthMixin, APIView):
+    def get(self, request):
+        data = services.user_get_login_data(user=request.user)
+
+        return Response(data)

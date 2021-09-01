@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Dict, Optional
 
 from django.db import models
 
@@ -20,3 +20,12 @@ def user_list(*, filters=None) -> models.QuerySet:
     qs = User.objects.all()
 
     return UserFilter(filters, qs).qs
+
+
+def user_get_login_data(*, user: User) -> Dict:
+    return {
+        "id": user.id,
+        "email": user.email,
+        "is_active": user.is_active,
+        "is_superuser": user.is_superuser,
+    }

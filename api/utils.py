@@ -1,7 +1,7 @@
-import typing
-
-# from drf_spectacular.openapi import AutoSchema
 from rest_framework import serializers
+
+# import typing
+# from drf_spectacular.openapi import AutoSchema
 
 
 def create_serializer_class(name, fields):

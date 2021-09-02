@@ -26,7 +26,7 @@ def get_error_message(exc):
     return error_msg
 
 
-def custom_exception_handler(exc, context):
+def formatted_exception_handler(exc, context):
     response = exception_handler(exc, context)
 
     # If unexpected error occurs (server error, etc.)
@@ -101,7 +101,7 @@ class ErrorFormatter:
         response_data = {self.ERRORS: [{self.MESSAGE: message, self.CODE: code}]}
 
         if field:
-            response_data[self.ERRORS][self.FIELD] = field
+            response_data[self.ERRORS][self.FIELD] = field  # noqa
 
         return response_data
 
@@ -137,7 +137,8 @@ class ErrorFormatter:
 
         errors_list = []
         for key, value in errors_dict.items():
-            new_field_path = "{0}.{1}".format(field_path, key) if field_path else key
+            new_field_path = f"{field_path}.{key}" if field_path else key
+            # new_field_path = "{0}.{1}".format(field_path, key) if field_path else key
             key_is_non_field_errors = key == api_settings.NON_FIELD_ERRORS_KEY
 
             if type(value) is list:

@@ -137,7 +137,7 @@ APPEND_SLASH = False
 
 # rest_framework
 REST_FRAMEWORK = {
-    "EXCEPTION_HANDLER": "api.errors.custom_exception_handler",
+    "EXCEPTION_HANDLER": "api.errors.formatted_exception_handler",
     "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S%z",
     "DEFAULT_RENDERER_CLASSES": (
         "rest_framework.renderers.JSONRenderer",

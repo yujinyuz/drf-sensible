@@ -9,7 +9,7 @@ from .models import User
 def user_create(
     *, email: str, is_active: bool = True, password: Optional[str] = None
 ) -> User:
-    user = User.objects.create_user(email=email, is_active=is_active, password=password)
+    user = User.objects.create_user(email=email, is_active=is_active, password=password)  # type: ignore
 
     return user
 
@@ -25,7 +25,7 @@ def user_list(*, filters=None) -> models.QuerySet:
 
 def user_get_login_data(*, user: User) -> Dict:
     return {
-        "id": user.id,
+        "id": user.id,  # type: ignore
         "email": user.email,
         "is_active": user.is_active,
         "is_superuser": user.is_superuser,

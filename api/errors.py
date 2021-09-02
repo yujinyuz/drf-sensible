@@ -101,7 +101,7 @@ class ErrorFormatter:
         response_data = {self.ERRORS: [{self.MESSAGE: message, self.CODE: code}]}
 
         if field:
-            response_data[self.ERRORS][self.FIELD] = field  # noqa
+            response_data[self.ERRORS][self.FIELD] = field  # type: ignore
 
         return response_data
 
